@@ -17,19 +17,19 @@
 
 Grab the latest version on gradle using
 
-```groovy
-compile 'com.cepheuen.elegant-number-button:lib:1.0.2'
 ```
-or on maven
+allprojects {
+  repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+  }
+}
+```
 
-```maven
-<dependency>
-  <groupId>com.cepheuen.elegant-number-button</groupId>
-  <artifactId>lib</artifactId>
-  <version>1.0.2</version>
-  <type>pom</type>
-</dependency>
-
+```
+dependencies {
+  implementation 'com.github.haseebpvt:ElegantNumberButton:2.0'
+}
 ```
 
 ## Usage
@@ -73,6 +73,10 @@ For Working implementation of this library check ElegantNumberButtonSample App
 `textSize`: Change text size of the button.
 
 `backgroundDrawable`: Add drawable background for the button.
+
+`incrementStep`: Number of steps to take when add button clicked
+
+`decrementStep`: Number of steps to take when minus button clicked
 
 ## Methods
 
