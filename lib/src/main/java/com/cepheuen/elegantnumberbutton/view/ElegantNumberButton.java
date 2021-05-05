@@ -26,6 +26,8 @@ public class ElegantNumberButton extends RelativeLayout {
     private int lastNumber;
     private int currentNumber;
     private int finalNumber;
+    private int incrementStep = 1;
+    private int decrementStep = 1;
     private TextView textView;
     private OnValueChangeListener mOnValueChangeListener;
 
@@ -64,6 +66,8 @@ public class ElegantNumberButton extends RelativeLayout {
 
         initialNumber = a.getInt(R.styleable.ElegantNumberButton_initialNumber, 0);
         finalNumber = a.getInt(R.styleable.ElegantNumberButton_finalNumber, Integer.MAX_VALUE);
+        incrementStep = a.getInt(R.styleable.ElegantNumberButton_incrementStep, 1);
+        decrementStep = a.getInt(R.styleable.ElegantNumberButton_decrementStep, 1);
         float textSize = a.getDimension(R.styleable.ElegantNumberButton_textSize, 13);
         int color = a.getColor(R.styleable.ElegantNumberButton_backGroundColor, defaultColor);
         int textColor = a.getColor(R.styleable.ElegantNumberButton_textColor, defaultTextColor);
@@ -96,15 +100,15 @@ public class ElegantNumberButton extends RelativeLayout {
         subtractBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View mView) {
-                int num = Integer.valueOf(textView.getText().toString());
-                setNumber(String.valueOf(num - 1), true);
+                int num = Integer.parseInt(textView.getText().toString());
+                setNumber(String.valueOf(num - decrementStep), true);
             }
         });
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View mView) {
-                int num = Integer.valueOf(textView.getText().toString());
-                setNumber(String.valueOf(num + 1), true);
+                int num = Integer.parseInt(textView.getText().toString());
+                setNumber(String.valueOf(num + incrementStep), true);
             }
         });
         a.recycle();
@@ -181,5 +185,21 @@ public class ElegantNumberButton extends RelativeLayout {
         this.textView.setTextSize(unit, newSize);
         this.addBtn.setTextSize(unit, newSize);
         this.subtractBtn.setTextSize(unit, newSize);
+    }
+
+    public int getIncrementStep() {
+        return incrementStep;
+    }
+
+    public void setIncrementStep(int incrementStep) {
+        this.incrementStep = incrementStep;
+    }
+
+    public int getDecrementStep() {
+        return decrementStep;
+    }
+
+    public void setDecrementStep(int decrementStep) {
+        this.decrementStep = decrementStep;
     }
 }
